@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .models import Profile
+from django.contrib.auth import authenticate, login, get_user_model
 
 
 def log_in(request):
@@ -18,18 +17,7 @@ def log_in(request):
     return render(request, 'accounts/login.html')
 
 
-def register(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    fullname = request.POST.get('fullname')
+User = get_user_model()
 
-    user = authenticate(request, username=username, password=password, fullname=fullname)
-    Profile.objects.create(user=user)
-    if user is not None:
-        login(request, user)
-        return redirect('/')
-    else:
-        redirect('/login')
-    return render(request, 'accounts/register.html')
 
 

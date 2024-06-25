@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, logout
 
 
 def log_in(request):
@@ -17,7 +17,8 @@ def log_in(request):
     return render(request, 'accounts/login.html')
 
 
-User = get_user_model()
-
+def log_out(request):
+    logout(request)
+    return redirect('/')
 
 

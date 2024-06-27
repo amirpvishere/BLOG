@@ -4,18 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>iofrm</title>
     <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/fontawesome-all.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/iofrm-style.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/iofrm-theme4.css" %}">
 </head>
 <body>
-    <div class="form-body" class="container-fluid">
-        <div class="website-logo">
-            <a href="/">
-            </a>
-        </div>
+
         <div class="row">
             <div class="img-holder">
                 <div class="bg"></div>
@@ -26,21 +22,26 @@
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>Get more things done with Loggin platform.</h3>
-                        <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                        <h3>Register in the website to see all the contents</h3>
+                        <p>Signup and enjoy</p>
                         <div class="page-links">
                             <a href="login">Login</a><a href="signup" class="active">Sign Up</a>
                         </div>
                         <form method="post">
                             {% csrf_token %}
+                            <input class="form-control" type="text" name="firstname" placeholder="First Name" required>
+                            <input class="form-control" type="text" name="lastname" placeholder="Last Name" required>
                             <input class="form-control" type="text" name="username" placeholder="Username" required>
+                            <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
                             <input class="form-control" type="password" name="password" placeholder="Password" required>
+                            <input class="form-control" type="password" name="password" placeholder="Confirm Password" required>
+
                             <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn">Login</button>
+                                <button id="submit" type="submit" class="ibtn">Register</button>
                             </div>
                         </form>
                         <div class="other-links">
-                            <span>Or login with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
+                            <span>Or register with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
                         </div>
                     </div>
                 </div>

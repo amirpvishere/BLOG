@@ -25,7 +25,7 @@
                         <h3>Register in the website to see all the contents</h3>
                         <p>Signup and enjoy</p>
                         <div class="page-links">
-                            <a href="login">Login</a><a href="signup" class="active">Sign Up</a>
+                            <a href="{% url 'accounts:login' %}">Login</a><a href="{% url 'accounts:signup' %}" class="active">Sign Up</a>
                         </div>
                         <form method="post">
                             {% csrf_token %}

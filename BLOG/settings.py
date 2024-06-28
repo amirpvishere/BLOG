@@ -30,6 +30,10 @@ INSTALLED_APPS = [
     # my app:
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
+    'post.apps.PostConfig',
+
+    # Default_app:
+    'django_cleanup.apps.CleanupConfig',
 
 ]
 
@@ -113,6 +117,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_DIRS = [os.path.join(BASE_DIR,'media')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

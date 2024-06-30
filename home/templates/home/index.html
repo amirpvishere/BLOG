@@ -144,7 +144,7 @@
                       <img src="{{ article.image.url }}" alt="289">
                     </div>
                     <div class="down-content">
-                      <span>Lifestyle</span>
+                      <span>{{ article.category.first }}</span>
                       <a href="../../../templates/post-details.html"><h4>{{ article.title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="#">{{ article.author }}</a></li>
@@ -156,8 +156,8 @@
                           <div class="col-6">
                             <ul class="post-tags">
                               <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Beauty</a>,</li>
-                              <li><a href="#">Nature</a></li>
+                              <li><a href="#">{{ article.category.first }}</a>,</li>
+                              <li><a href="#">{{ article.category.last }}</a></li>
                             </ul>
                           </div>
                           <div class="col-6">

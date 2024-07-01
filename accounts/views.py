@@ -12,7 +12,7 @@ def log_in(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return redirect('/')
+        return redirect('home:home')
     else:
         redirect('/login')
     return render(request, 'accounts/login.html')
@@ -20,7 +20,7 @@ def log_in(request):
 
 def sign_up(request):
     if request.user.is_authenticated:
-        return redirect('/')
+        return redirect('home:home')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -34,7 +34,7 @@ def sign_up(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return redirect('home:home')
         else:
             redirect('/signup')
     return render(request, 'accounts/signup.html', {})

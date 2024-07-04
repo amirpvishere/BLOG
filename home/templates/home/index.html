@@ -59,9 +59,6 @@
                 <a class="nav-link" href="../../../templates/blog.html">Blog Entries</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../../../templates/post-details.html">Post Details</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="{% url 'home:contact_us' %}">Contact Us</a>
               </li>
               <li class="nav-item">
@@ -87,15 +84,15 @@
         <div class="owl-banner owl-carousel">
           {% for article in articles %}
               <div class="item">
-            <img src="{{ article.image.url }}" alt="289">
+            <img src="{{ article.image.url }}" height="450px" width='300px' alt="289">
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
-                  <span>Fashion</span>
+                  <span>{{ article.category.first }}</span>
                 </div>
-                <a href="../../../templates/post-details.html"><h4>{{ article.title }}</h4></a>
+                <a href="post/details/{{ article.id }}"><h4>{{ article.title }}</h4></a>
                 <ul class="post-info">
-                  <li><a href="#">{{ article.author }}</a></li>
+                  <li><a href="#">{{ article.author.first_name }}</a></li>
                   <li><a href="#">{{ article.created_time }}</a></li>
                 </ul>
               </div>
@@ -105,30 +102,10 @@
         </div>
       </div>
     </div>
+    <hr class="container">
+    <hr>
+    <hr>
     <!-- Banner Ends Here -->
-
-    <section class="call-to-action">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="main-content">
-              <div class="row">
-                <div class="col-lg-8">
-                  <span>Stand Blog HTML5 Template</span>
-                  <h4>Creative HTML Template For Bloggers!</h4>
-                </div>
-                <div class="col-lg-4">
-                  <div class="main-button">
-                    <a rel="nofollow" href="https://templatemo.com/tm-551-stand-blog" target="_parent">Download Now!</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
 
     <section class="blog-posts">
       <div class="container">
@@ -141,11 +118,11 @@
                   <div class="blog-post">
 
                     <div class="blog-thumb">
-                      <img src="{{ article.image.url }}" alt="289">
+                      <img src="{{ article.image.url }}" height="700px" alt="289">
                     </div>
                     <div class="down-content">
                       <span>{{ article.category.first }}</span>
-                      <a href="../../../templates/post-details.html"><h4>{{ article.title }}</h4></a>
+                      <a href="post/details/{{ article.id }}"><h4>{{ article.title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="#">{{ article.author }}</a></li>
                         <li><a href="#">{{ article.created_time }}</a></li>

@@ -22,10 +22,10 @@
                                 <div class="meta-category">
                                     <span>{{ article.category.first }}</span>
                                 </div>
-                                <a href="{% url 'post:details' article.id %}"><h4>{{ article.title }}</h4></a>
+                                <a href="{{ article.get_absolute_url }}"><h4>{{ article.title }}</h4></a>
                                 <ul class="post-info">
                                     <li><a href="#">{{ article.author.get_full_name }}</a></li>
-                                    <li><a href="#">{{ article.created_time }}</a></li>
+                                    <li>{{ article.created_time }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -34,8 +34,6 @@
             </div>
         </div>
     </div>
-
-
     <hr class='container' style="height:5px; background-color:#333;">
     <hr class='container' style="height:5px; background-color:#333;">
     <hr class='container' style="height:5px; background-color:#333;">
@@ -71,7 +69,7 @@
                                         </div>
                                         <div class="down-content">
                                             <span>{{ article.category.first }}</span>
-                                            <a href="{% url 'post:details' article.id %}"><h4>{{ article.title }}</h4>
+                                            <a href="{{ article.get_absolute_url }}"><h4>{{ article.title }}</h4>
                                             </a>
                                             <ul class="post-info">
                                                 <li><a href="#">{{ article.author }}</a></li>

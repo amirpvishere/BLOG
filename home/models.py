@@ -7,5 +7,7 @@ class ContactUs(models.Model):
     subject = models.CharField(max_length=150, null=True)
     message = models.TextField(null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = 'Contact Us'
     def __str__(self):
         return self.subject

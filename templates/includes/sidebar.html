@@ -38,7 +38,7 @@
                     <div class="content">
                         <ul>
                             {% for item in categories %}
-                                <li><a href="#">{{ item.title }}</a></li>
+                                <li><a href="{% url 'post:categories' item.id %}">{{ item.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

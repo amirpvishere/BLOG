@@ -7,7 +7,7 @@ def home(request):
     articles = Article.objects.all()
     recent_articles = Article.objects.all().order_by('created_time', 'updated_time')[:3]
     categories = Category.objects.all()
-    return render(request, "home/index.html", {"articles": articles, "recent_articles": recent_articles, "categories": categories})
+    return render(request, "home/index.html", {"articles": articles})
 
 
 def contact_us(request):

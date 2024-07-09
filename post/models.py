@@ -17,7 +17,7 @@ class Category(models.Model):
 
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, related_name="articles")
     title = models.CharField(max_length=100)
     body = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True)

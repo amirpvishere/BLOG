@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from post.models import Article, Category
+from django.core.paginator import Paginator
 
 
 def post_details(request, slug):
@@ -9,7 +10,10 @@ def post_details(request, slug):
 
 def blog_enteries(request):
     articles = Article.objects.all()
-    return render(request, 'post/all_post.html', context={'articles': articles})
+    page_number = request.GET.get('page')
+    paginator = Paginator(articles, 2)
+    object_list = paginator.get_page(page_number)
+    return render(request, 'post/all_post.html', context={'articles': object_list})
 
 
 def category_sub(request, pk=None):

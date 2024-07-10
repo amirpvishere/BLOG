@@ -20,7 +20,7 @@
                     {% for item in recent %}
                         <div class="content">
                             <ul>
-                                <li><a href="{% url 'post:details' item.id %}">
+                                <li><a href="{% url 'post:details' item.slug %}">
                                     <h5>{{ item.title }}</h5>
                                     <span>{{ item.created_time }}</span>
                                 </a></li>

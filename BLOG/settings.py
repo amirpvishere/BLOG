@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     # Default_app:
     'django_cleanup.apps.CleanupConfig',
+    'django_social_share'
 
 ]
 

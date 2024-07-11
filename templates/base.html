@@ -46,18 +46,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'home:home' %}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% if request.resolver_match.url_name == 'about_us' %}active{% endif %}">
                         <a class="nav-link" href="about.html">About Us</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% if request.resolver_match.url_name == 'all' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'post:all' %}">Blog Entries</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'home:contact_us' %}">Contact Us</a>
                     </li>
                     {% if request.user.is_authenticated %}

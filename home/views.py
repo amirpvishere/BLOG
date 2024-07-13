@@ -1,19 +1,27 @@
-from django.shortcuts import render
-from post.models import Article, Category
-from home.models import ContactUs
+from django.shortcuts import render, redirect
+from post.models import Article
+from .forms import ContactUsForm
+from .models import ContactUs
 
 
 def home(request):
     articles = Article.objects.all()
-    recent_articles = Article.objects.all().order_by('created_time', 'updated_time')[:3]
-    categories = Category.objects.all()
     return render(request, "home/index.html", {"articles": articles})
 
 
+def contact_us_list(request):
+    items = ContactUs.objects.all()
+    return render(request, 'home/contact_us_list.html', context={"items": items})
+
+
 def contact_us(request):
-    name = request.POST.get("name")
-    subject = request.POST.get("subject")
-    email = request.POST.get("email")
-    message = request.POST.get("message")
-    ContactUs.objects.create(name=name, email=email, subject=subject, message=message)
-    return render(request, "home/contact.html")
+    if request.method == "POST":
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            ContactUs.objects.create(name=request.user.username, email=request.user.email, subject=subject, message=message)
+            return redirect("home:contact_us")
+    else:
+        form = ContactUsForm()
+    return render(request, "home/contact.html", {"form": form})

@@ -50,20 +50,7 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     {{ form.non_field_errors }}
                                                     <fieldset>
-                                                        {% if form.subject.errors %}
-                                                            <div class="alert alert-danger">
-                                                                {{ form.subject.errors }}
-                                                            </div>
-                                                        {% endif %}
-                                                        {{ form.subject.label }}:
-                                                        {{ form.subject }}
-                                                        {% if form.message.errors %}
-                                                            <div class="alert alert-danger">
-                                                                {{ form.message.errors }}
-                                                            </div>
-                                                        {% endif %}
-                                                        {{ form.message.label }}:
-                                                        {{ form.message }}
+                                                        {{ form }}
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-lg-12">

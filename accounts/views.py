@@ -1,21 +1,22 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+from .forms import LoginForm, RegisterForm
 
 
 def log_in(request):
     if request.user.is_authenticated:
         return redirect('/')
 
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return redirect('home:home')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(username=form.cleaned_data['username'])
+            login(request, user)
+            redirect('accounts:login')
     else:
-        redirect('/login')
-    return render(request, 'accounts/login.html')
+        form = LoginForm()
+    return render(request, 'accounts/login.html', context={'form': form})
 
 
 def sign_up(request):
@@ -23,25 +24,20 @@ def sign_up(request):
         return redirect('home:home')
 
     if request.method == 'POST':
-        username = request.POST.get('username')
-        first_name = request.POST.get('firstname')
-        last_name = request.POST.get('lastname')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-
-        user = User.objects.create(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
-
-
-        if user is not None:
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create(username=form.cleaned_data['username'],
+                                       email=form.cleaned_data['email'],
+                                       password=form.cleaned_data['password'],
+                                       first_name=form.cleaned_data['first_name'],
+                                       last_name=form.cleaned_data['last_name'])
             login(request, user)
             return redirect('home:home')
-        else:
-            redirect('/signup')
-    return render(request, 'accounts/signup.html', {})
+    else:
+        form = RegisterForm()
+    return render(request, 'accounts/signup.html', {'form': form})
 
 
 def log_out(request):
     logout(request)
-    return redirect('/')
-
-
+    return redirect('home:home')

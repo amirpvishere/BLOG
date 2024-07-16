@@ -29,13 +29,11 @@
                         </div>
                         <form method="post">
                             {% csrf_token %}
-                            <input class="form-control" type="text" name="firstname" placeholder="First Name" required>
-                            <input class="form-control" type="text" name="lastname" placeholder="Last Name" required>
-                            <input class="form-control" type="text" name="username" placeholder="Username" required>
-                            <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
-                            <input class="form-control" type="password" name="password" placeholder="Password" required>
-                            <input class="form-control" type="password" name="password" placeholder="Confirm Password" required>
-
+                            {{ form.first_name }}
+                            {{ form.last_name }}
+                            {{ form.username }}
+                            {{ form.password }}
+                            {{ form.email }}
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn">Register</button>
                             </div>

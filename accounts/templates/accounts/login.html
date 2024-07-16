@@ -31,10 +31,11 @@
                         <div class="page-links">
                             <a href="{% url 'accounts:login' %}" class="active">Login</a><a href="{% url 'accounts:signup' %}">Sign Up</a>
                         </div>
+                        <p>{{ from.errors }}</p>
                         <form method="post">
                             {% csrf_token %}
-                            <input class="form-control" type="text" name="username" placeholder="Username" required>
-                            <input class="form-control" type="password" name="password" placeholder="Password" required>
+                            {{ form.username }}
+                            {{ form.password }}
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn">Login</button>
                             </div>

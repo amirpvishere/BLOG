@@ -1,20 +1,23 @@
 {% load static %}
+{% load filters %}
+
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+          rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  
-      <title>
+
+    <title>
         {% block title %}
-            
+
         {% endblock %}
     </title>
 
@@ -22,10 +25,10 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'css/templatemo-stand-blog.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.css' %}">
-  
 
-  </head>
-  
+
+</head>
+
 <body>
 
 <div id="preloader">
@@ -39,7 +42,7 @@
 <header class="">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home:home' %}"><h2>Stand Blog<em>.</em></h2></a>
+            <a class="navbar-brand" href="{% url 'home:home' %}"><h2><em>Daily</em> Blog</h2></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,13 +65,19 @@
                     </li>
                     {% if request.user.is_authenticated %}
                         <div class="d-flex">
-                            <a class="nav-link" href="{% url 'accounts:profile' %}">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+                            <a class="nav-link"
+                               href="{% url 'accounts:profile' %}">{{ request.user.first_name }} {{ request.user.last_name }}</a>
                             <a href="{% url 'accounts:logout' %}"><span class="badge badge-danger m-t-50">Logout</span></a>
                         </div>
                     {% else %}
                         <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
                     {% endif %}
                 </ul>
+                </li>
+                <li class="nav-item">
+                    {% current_time "%Y-%m-%d %I:%M %p" as the_time %}
+                    <span class="nav-link">{{ the_time }}</span>
+                </li>
             </div>
         </div>
     </nav>

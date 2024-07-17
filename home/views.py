@@ -5,7 +5,7 @@ from .models import ContactUs
 
 
 def home(request):
-    articles = Article.objects.all()
+    articles = Article.objects.filter()[:3]
     return render(request, "home/index.html", {"articles": articles})
 
 

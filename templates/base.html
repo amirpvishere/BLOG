@@ -62,7 +62,7 @@
                     </li>
                     {% if request.user.is_authenticated %}
                         <div class="d-flex">
-                            <a class="nav-link" href="/">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+                            <a class="nav-link" href="{% url 'accounts:profile' %}">{{ request.user.first_name }} {{ request.user.last_name }}</a>
                             <a href="{% url 'accounts:logout' %}"><span class="badge badge-danger m-t-50">Logout</span></a>
                         </div>
                     {% else %}

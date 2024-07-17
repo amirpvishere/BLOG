@@ -59,7 +59,7 @@
                                     <div class="blog-post">
 
                                         <div class="blog-thumb">
-                                            <img src="{{ article.image.url }}" height="700px" alt="289">
+                                            <img src="{{ article.image.url }}" height="400px" width="200px" alt="289">
                                         </div>
                                         <div class="down-content">
                                             <span>{{ article.category.first }}</span>
@@ -69,7 +69,7 @@
                                                 <li><a href="#">{{ article.author }}</a></li>
                                                 <li><a href="#">{{ article.created_time }}</a></li>
                                             </ul>
-                                            <p>{{ article.body }}</p>
+                                            <p>{{ article.body|truncatewords:50 }}</p>
                                             <div class="post-options">
                                                 <div class="row">
                                                     <div class="col-6">

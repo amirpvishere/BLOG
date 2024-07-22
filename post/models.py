@@ -14,19 +14,19 @@ class Category(models.Model):
         return self.title
 
 
-
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    category = models.ManyToManyField(Category, related_name="articles")
+    category = models.ManyToManyField(Category, related_name="articles", blank=True)
     title = models.CharField(max_length=100)
     body = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='images/post')
+    image = models.ImageField(upload_to='images/post', default='images/ArticleDefault.jpg')
     slug = models.SlugField(null=True, unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        if not self.slug:
+            self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -45,5 +45,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.body[:35]
-
-

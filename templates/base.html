@@ -6,6 +6,7 @@
 
 <head>
 
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -14,6 +15,10 @@
           rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    {% block CSS %}
+
+    {% endblock %}
 
     <title>
         {% block title %}
@@ -55,10 +60,10 @@
                         </a>
                     </li>
                     <li class="nav-item {% if request.resolver_match.url_name == 'about_us' %}active{% endif %}">
-                        <a class="nav-link" href="about.html">About Us</a>
+                        <a class="nav-link" href="{% url 'post:create_post' %}">Create Post</a>
                     </li>
                     <li class="nav-item {% if request.resolver_match.url_name == 'all' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'post:all' %}">Blog Entries</a>
+                        <a class="nav-link" href="{% url 'post:all' %}">All Posts</a>
                     </li>
                     <li class="nav-item {% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'home:contact_us' %}">Contact Us</a>

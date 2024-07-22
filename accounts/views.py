@@ -51,3 +51,8 @@ def edit_profile(request):
             form.save()
     return render(request, 'accounts/edit_profile.html', {"form": form})
 
+
+
+def a(request):
+    a = User.objects.all()
+

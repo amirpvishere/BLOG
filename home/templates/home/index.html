@@ -9,12 +9,11 @@
 
 {% block content %}
 
-    <!-- Page Content -->
-    <!-- Banner Starts Here -->
+
     <div class="main-banner header-text">
         <div class="container-fluid">
             <div class="owl-banner owl-carousel">
-                {% for article in articles %}
+                {% for article in recent_articles %}
                     <div class="item">
                         <img src="{{ article.image.url }}" height="450px" width='300px' alt="289">
                         <div class="item-content">
@@ -38,16 +37,13 @@
     <br>
     <br>
     <hr class='container' style="height:5px; background-color:#333;">
+    <br>
 
 
-
-
-
-    <!-- Banner Ends Here -->
     <div>
-    <h1 class="container">
-        Posts You've Shared
-    </h1>
+        <h1 class="container">
+            Posts You've Shared
+        </h1>
     </div>
 
     <section class="blog-posts">

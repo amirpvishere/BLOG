@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
 from post.models import Article
 from .forms import ContactUsForm
 from .models import ContactUs
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 
 def home(request):
-    articles = Article.objects.filter()[:3]
-    return render(request, "home/index.html", {"articles": articles})
+    recent_articles = Article.objects.filter()
+    articles = Article.objects.order_by('-created_time')[:3]
+    return render(request, "home/index.html", context={"articles": articles, "recent_articles": recent_articles})
 
 
 def contact_us_list(request):
@@ -25,3 +29,7 @@ def contact_us(request):
     else:
         form = ContactUsForm()
     return render(request, "home/contact.html", {"form": form})
+
+
+
+

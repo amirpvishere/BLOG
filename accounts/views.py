@@ -53,6 +53,4 @@ def edit_profile(request):
 
 
 
-def a(request):
-    a = User.objects.all()
 

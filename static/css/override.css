@@ -1,0 +1,10 @@
+@font-face {
+    font-family: oxford;
+    src: url("../fonts/oxford.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: oxford;
+}

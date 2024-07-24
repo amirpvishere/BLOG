@@ -1,7 +1,26 @@
 from django.contrib import admin
-from .models import Article, Category, Comment
+from . import models
 
 
-admin.site.register(Article)
-admin.site.register(Category)
-admin.site.register(Comment)
+class CommentInlime(admin.TabularInline):
+    model = models.Comment
+
+
+@admin.register(models.Article)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'show_image']
+    list_filter = ['published']
+    search_fields = ['title','body']
+    inlines = [CommentInlime]
+
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['article', 'body', 'user']
+    list_filter = ['user']
+
+
+# admin.site.register(models.Article)
+admin.site.register(models.Category)
+# admin.site.register(models.Comment)
+

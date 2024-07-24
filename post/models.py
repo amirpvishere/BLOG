@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.html import format_html
 from django.utils.text import slugify
 
 
@@ -23,11 +24,17 @@ class Article(models.Model):
     updated_time = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='images/post', default='images/ArticleDefault.jpg')
     slug = models.SlugField(null=True, unique=True)
+    published = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
+
+    def show_image(self):
+        if self.image:
+            return format_html(f"<img src='{self.image.url}' width='45px' height='30px'>")
+    show_image.short_description = 'Image'
 
     def get_absolute_url(self):
         return reverse("post:details", kwargs={"slug": self.slug})

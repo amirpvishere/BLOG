@@ -11,5 +11,6 @@ urlpatterns = [
     path('create', views.ArticleCreateView.as_view(), name='create_post'),
     path('update/<slug:slug>', views.UpdateArticleView.as_view(), name='update_post'),
     path('delete/<slug:slug>', views.ArticleDeleteView.as_view(), name='delete_post'),
+    path('like/<slug:slug>/<int:pk>', views.like, name='like'),
 ]
 

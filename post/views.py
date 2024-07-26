@@ -1,6 +1,7 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from post.models import Article, Category, Comment
+from post.models import Article, Category, Comment, Like
 from django.core.paginator import Paginator
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
@@ -11,7 +12,12 @@ def post_details(request, slug):
         body = request.POST.get('body')
         parent_id = request.POST.get('parent_id')
         Comment.objects.create(user=request.user, article=articles, body=body, parent_id=parent_id)
-    return render(request, 'post/post-details.html', context={'articles': articles})
+    if request.user.is_authenticated:
+        if request.user.likes.filter(article__slug=slug, user_id=request.user.id).exists():
+            is_liked = True
+        else:
+            is_liked = False
+    return render(request, 'post/post-details.html', context={'articles': articles, "is_liked": is_liked})
 
 
 def blog_enteries(request):
@@ -45,7 +51,7 @@ class ArticleListView(ListView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    fields = ('title', 'body','image')
+    fields = ('title', 'body', 'image')
     template_name = 'post/create_a_article.html'
 
     def get_success_url(self):
@@ -79,6 +85,15 @@ class ArticleDeleteView(DeleteView):
     template_name = 'post/delete_post.html'
 
 
+def like(request, slug, pk):
+    if request.user.is_authenticated:
+        try:
+            like = Like.objects.get(article__slug=slug, user_id=request.user.id)
+            like.delete()
+            return JsonResponse({'response': "unlike"})
+        except:
+            Like.objects.create(article_id=pk, user_id=request.user.id)
+            return JsonResponse({'response': "like"})
 
 
 
